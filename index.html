@@ -3,14 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link
-            rel="icon"
-            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%23000000%22/><circle cx=%2235%22 cy=%2250%22 r=%226%22 fill=%22%23ffffff%22/><path d=%22M 48 35 A 20 20 0 0 1 48 65%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-width=%226%22 stroke-linecap=%22round%22/><path d=%22M 62 25 A 35 35 0 0 1 62 75%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-width=%226%22 stroke-linecap=%22round%22/></svg>"
-        />
+        <title>PokeDex</title>
+        <!-- favicon -->
+        <link rel="icon" href="img/favicon/favicon.ico" />
+        <!-- CSS -->
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="./style.css" />
+        <!-- JavaScript -->
         <script defer src="./script.js"></script>
     </head>
-    <body onload="getDataFromPokeApi()"></body>
+    <body class="d-flex justify-content-center" onload="getDataFromPokeApi()">
+        <h1 class="">PokeDex</h1>
+    </body>
 </html>
