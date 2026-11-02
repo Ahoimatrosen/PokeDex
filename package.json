@@ -1,0 +1,15 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "An interactive Pokédex web application built with Vanilla JavaScript, HTML, CSS, and Bootstrap.",
+  "license": "ISC",
+  "author": "AhoiMatrosen",
+  "type": "commonjs",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  }
+}
