@@ -1,0 +1,7 @@
+.card {
+    border-radius: 2rem;
+}
+
+.card-body > h5 {
+    text-align: center;
+}
