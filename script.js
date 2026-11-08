@@ -4,6 +4,7 @@ async function init() {
     const pokemonList = await getPokemonList();
     const pokemonInfoList = await getPokemonInfoList(pokemonList);
     renderPokemonInfo(pokemonInfoList);
+
     console.log(pokemonList);
     console.log(pokemonInfoList);
 }
@@ -29,16 +30,4 @@ function renderPokemonInfo(pokemonInfoList) {
         const pokemonInfo = pokemonInfoList[indexPokemonInfoList];
         pokedexRef.innerHTML += getPokedexTemplate(indexPokemonInfoList, pokemonInfo);
     }
-}
-
-function getPokedexTemplate(indexPokemonInfoList, pokemonInfo) {
-    return `
-    <div id="pokemon+${indexPokemonInfoList}" class="card m-3" style="width: 18rem">
-        <div class="card-body">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/1.png" class="card-img" alt="..." />
-        <h5 class="mt-2 mb-0">${pokemonInfo.name}</h5>
-        <p class="card-text fg-2">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-        <small class="fg-3">Last updated 3 mins ago</small>
-        </div>
-    </div>`;
 }
