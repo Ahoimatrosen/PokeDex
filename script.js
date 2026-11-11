@@ -1,15 +1,14 @@
-const POKE_API_BASE_URL = "https://pokeapi.co/api/v2/pokemon";
-
+offset = 0;
 async function init() {
-    const pokemonList = await getPokemonList();
+    const pokemonList = await getPokemonList(offset);
     const pokemonInfoList = await getPokemonInfoList(pokemonList);
     renderPokemonInfo(pokemonInfoList);
 
-    console.log(pokemonList);
     console.log(pokemonInfoList);
 }
 
-async function getPokemonList() {
+async function getPokemonList(offset) {
+    let POKE_API_BASE_URL = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`;
     let pokemonListResponse = await fetch(POKE_API_BASE_URL);
     let pokemonListResponseJson = await pokemonListResponse.json();
     return pokemonListResponseJson.results;
@@ -30,4 +29,12 @@ function renderPokemonInfo(pokemonInfoList) {
         const pokemonInfo = pokemonInfoList[indexPokemonInfoList];
         pokedexRef.innerHTML += getPokedexTemplate(indexPokemonInfoList, pokemonInfo);
     }
+}
+
+async function loadMorePokemon() {
+    offset = offset + 20;
+    POKE_API_BASE_URL = "https://pokeapi.co/api/v2/pokemon?offset=" + offset;
+    const nextPokemonList = await getPokemonList(offset);
+    const nextPokemonInfoList = await getPokemonInfoList(nextPokemonList);
+    renderPokemonInfo(nextPokemonInfoList);
 }
