@@ -1,7 +1,104 @@
+:root {
+    --grass-type-background: #78c850;
+    --poison-type-background: #a040a0;
+    --fire-type-background: #f08030;
+    --water-type-background: #6890f0;
+    --electric-type-background: #f8d030;
+    --bug-type-background: #a8b820;
+    --normal-type-background: #a8a878;
+    --flying-type-background: #a890f0;
+    --ground-type-background: #e0c068;
+    --rock-type-background: #b8a038;
+    --ice-type-background: #98d8d8;
+    --fighting-type-background: #c03028;
+    --psychic-type-background: #f85888;
+    --ghost-type-background: #705898;
+    --dragon-type-background: #7038f8;
+    --steel-type-background: #b8b8d0;
+    --fairy-type-background: #ee99ac;
+    --dark-type-background: #705848;
+}
+
+body {
+    background: linear-gradient(135deg, #1a4731 0%, #0e2f22 50%, #091f15 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+h1 {
+    margin: 48px;
+    color: white;
+    font-size: 5rem;
+}
+
 .card {
+    border: 1px solid rgba(0, 0, 0, 1);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     border-radius: 2rem;
+}
+
+.card-body > img {
+    border-radius: 50%;
+    padding: 10px;
 }
 
 .card-body > h5 {
     text-align: center;
+    padding: 20px;
+}
+
+.grass-type-background {
+    background-color: var(--grass-type-background);
+}
+.poison-type-background {
+    background-color: var(--poison-type-background);
+}
+.fire-type-background {
+    background-color: var(--fire-type-background);
+}
+.water-type-background {
+    background-color: var(--water-type-background);
+}
+.electric-type-background {
+    background-color: var(--electric-type-background);
+}
+.bug-type-background {
+    background-color: var(--bug-type-background);
+}
+.normal-type-background {
+    background-color: var(--normal-type-background);
+}
+.flying-type-background {
+    background-color: var(--flying-type-background);
+}
+.ground-type-background {
+    background-color: var(--ground-type-background);
+}
+.rock-type-background {
+    background-color: var(--rock-type-background);
+}
+.ice-type-background {
+    background-color: var(--ice-type-background);
+}
+.fighting-type-background {
+    background-color: var(--fighting-type-background);
+}
+.psychic-type-background {
+    background-color: var(--psychic-type-background);
+}
+.ghost-type-background {
+    background-color: var(--ghost-type-background);
+}
+.dragon-type-background {
+    background-color: var(--dragon-type-background);
+}
+.steel-type-background {
+    background-color: var(--steel-type-background);
+}
+.fairy-type-background {
+    background-color: var(--fairy-type-background);
+}
+.dark-type-background {
+    background-color: var(--dark-type-background);
 }
