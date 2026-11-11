@@ -1,6 +1,6 @@
 function getPokedexTemplate(indexPokemonInfoList, pokemonInfo) {
     return `
-    <div id="pokemon${indexPokemonInfoList}" class="card m-3" style="width: 18rem">
+    <div id="pokemon${indexPokemonInfoList}" class="card m-3 ${pokemonInfo.types[0].type.name}-type-background" style="width: 18rem">
         <div   div class="card-body">
         <h5 class="mt-2 mb-0">${pokemonInfo.name.toUpperCase()}</h5>
         <img src="${pokemonInfo.sprites.front_default}" class="card-img" alt="pokemon-img" />
