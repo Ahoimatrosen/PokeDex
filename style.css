@@ -38,14 +38,18 @@ h1 {
     border-radius: 2rem;
 }
 
-.card-body > img {
-    border-radius: 50%;
-    padding: 10px;
+.card:hover {
+    transition: 250ms ease-out;
+    transform: scale(1.07) rotate(2deg);
 }
 
-.card-body > h5 {
-    text-align: center;
-    padding: 20px;
+.card-body > header {
+    gap: 10px;
+    width: 100%;
+}
+
+.card-body > header > h4 {
+    text-align: left;
 }
 
 .grass-type-background {
