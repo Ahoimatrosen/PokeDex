@@ -27,6 +27,7 @@ function renderPokemonInfo(pokemonInfoList) {
     for (let indexPokemonInfoList = 0; indexPokemonInfoList < pokemonInfoList.length; indexPokemonInfoList++) {
         const pokedexRef = document.getElementById("pokedex");
         const pokemonInfo = pokemonInfoList[indexPokemonInfoList];
+        pokedexRef.innerHTML += getPokedexTemplate(indexPokemonInfoList, pokemonInfo);
     }
 }
 
