@@ -5,9 +5,9 @@ async function init() {
     const singlePokemonTypes = await getSinglePokemonTypes(pokemonInfoList);
     renderPokemonInfo(pokemonInfoList);
 
-    // console.log(pokemonList);
+    console.log(pokemonList);
     console.log(pokemonInfoList);
-    // console.log(singlePokemonTypes);
+    console.log(singlePokemonTypes);
 }
 
 // holt die Namen und URLs der Pokemon

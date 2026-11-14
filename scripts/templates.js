@@ -12,23 +12,14 @@ function getPokemonCardTemplate(indexPokemonInfoList, pokemonInfo) {
                 class="card-img " 
                 alt="${pokemonInfo.name}" 
             />
-        
-       
-        <ul>
-            <li>height: ${pokemonInfo.height / 10} m</li>
-            <li>weight: ${pokemonInfo.weight / 10}kg</li>
-            <b>types:</b>
-            <li>
-                <ul id="types-list${indexPokemonInfoList}"></ul>
-            </li>
-        </ul>
+            <div class="d-flex justify-content-around" id="types-list${indexPokemonInfoList}"></div>
         </div>
     </div>`;
 }
 
 function getTypesListTemplate(pokemonType) {
     return `
-    <p>${pokemonType.name}</p>
+<img class="rounded-circle" src="${pokemonType.sprites["generation-ix"].champions["symbol_icon"]}" alt="">
 
     `;
 }
