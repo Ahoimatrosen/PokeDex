@@ -32,12 +32,3 @@ function getTypesListTemplate(pokemonType) {
 
     `;
 }
-
-// function getTypesTemplate(pokemonInfo) {
-//     let typesHtml = "";
-//     for (let indexTypes = 0; indexTypes < pokemonInfo.types.length; indexTypes++) {
-//         const types = pokemonInfo.types[indexTypes];
-//         typesHtml += `<li>${types.type.name}</li>`;
-//     }
-//     return typesHtml;
-// }
