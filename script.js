@@ -1,19 +1,23 @@
-offset = 0;
 async function init() {
+    let offset = 0;
     const pokemonList = await getPokemonList(offset);
     const pokemonInfoList = await getPokemonInfoList(pokemonList);
+    const singlePokemonTypes = await getSinglePokemonTypes(pokemonInfoList);
     renderPokemonInfo(pokemonInfoList);
 
+    // console.log(pokemonList);
     console.log(pokemonInfoList);
+    // console.log(singlePokemonTypes);
 }
 
+// holt die Namen und URLs der Pokemon
 async function getPokemonList(offset) {
-    let POKE_API_BASE_URL = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`;
-    let pokemonListResponse = await fetch(POKE_API_BASE_URL);
+    let POKE_API_POKEMON = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`;
+    let pokemonListResponse = await fetch(POKE_API_POKEMON);
     let pokemonListResponseJson = await pokemonListResponse.json();
     return pokemonListResponseJson.results;
 }
-
+// holt die Infos der einzelnen Pokemon
 async function getPokemonInfoList(pokemonList) {
     const pokemonPromises = [];
     for (let indexPokemonList = 0; indexPokemonList < pokemonList.length; indexPokemonList++) {
@@ -22,18 +26,40 @@ async function getPokemonInfoList(pokemonList) {
     }
     return await Promise.all(pokemonPromises);
 }
-
-function renderPokemonInfo(pokemonInfoList) {
+async function getSinglePokemonTypes(pokemonInfoList) {
     for (let indexPokemonInfoList = 0; indexPokemonInfoList < pokemonInfoList.length; indexPokemonInfoList++) {
-        const pokedexRef = document.getElementById("pokedex");
+        const singlePokemonTypePromises = [];
         const pokemonInfo = pokemonInfoList[indexPokemonInfoList];
-        pokedexRef.innerHTML += getPokedexTemplate(indexPokemonInfoList, pokemonInfo);
+        for (let indexSinglePokemonTypes = 0; indexSinglePokemonTypes < pokemonInfo.types.length; indexSinglePokemonTypes++) {
+            const pokemonTypes = pokemonInfo.types[indexSinglePokemonTypes];
+            singlePokemonTypePromises.push(fetch(pokemonTypes.type.url).then((pokemonTypeResponse) => pokemonTypeResponse.json()));
+        }
+        pokemonInfo.singlePokemonType = await Promise.all(singlePokemonTypePromises);
     }
 }
 
+// bildet Pokemonkarten ab
+function renderPokemonInfo(pokemonInfoList) {
+    for (let indexPokemonInfoList = 0; indexPokemonInfoList < pokemonInfoList.length; indexPokemonInfoList++) {
+        const pokemonCardRef = document.getElementById("pokemon-card");
+        const pokemonInfo = pokemonInfoList[indexPokemonInfoList];
+        pokemonCardRef.innerHTML += getPokemonCardTemplate(indexPokemonInfoList, pokemonInfo);
+        renderPokemonTypes(indexPokemonInfoList, pokemonInfo);
+    }
+}
+
+function renderPokemonTypes(indexPokemonInfoList, pokemonInfo) {
+    for (let indexPokemonTypes = 0; indexPokemonTypes < pokemonInfo.singlePokemonType.length; indexPokemonTypes++) {
+        const pokemonTypesListRef = document.getElementById("types-list" + indexPokemonInfoList);
+        pokemonType = pokemonInfo.singlePokemonType[indexPokemonTypes];
+        pokemonTypesListRef.innerHTML += getTypesListTemplate(pokemonType);
+    }
+}
+
+// lädt 20 mehr Pokemon
 async function loadMorePokemon() {
     offset = offset + 20;
-    POKE_API_BASE_URL = "https://pokeapi.co/api/v2/pokemon?offset=" + offset;
+    POKE_API_POKEMON = "https://pokeapi.co/api/v2/pokemon?offset=" + offset;
     const nextPokemonList = await getPokemonList(offset);
     const nextPokemonInfoList = await getPokemonInfoList(nextPokemonList);
     renderPokemonInfo(nextPokemonInfoList);

@@ -1,4 +1,4 @@
-function getPokedexTemplate(indexPokemonInfoList, pokemonInfo) {
+function getPokemonCardTemplate(indexPokemonInfoList, pokemonInfo) {
     return `
     <div id="pokemon${indexPokemonInfoList}" class="card m-3 ${pokemonInfo.types[0].type.name}-type-background" style="width: 18rem">
         <div class="card-body ">
@@ -19,20 +19,25 @@ function getPokedexTemplate(indexPokemonInfoList, pokemonInfo) {
             <li>weight: ${pokemonInfo.weight / 10}kg</li>
             <b>types:</b>
             <li>
-                <ul>
-                    ${getTypesTemplate(pokemonInfo)}
-                </ul>
+                <ul id="types-list${indexPokemonInfoList}"></ul>
             </li>
         </ul>
         </div>
     </div>`;
 }
 
-function getTypesTemplate(pokemonInfo) {
-    let typesHtml = "";
-    for (let indexTypes = 0; indexTypes < pokemonInfo.types.length; indexTypes++) {
-        const types = pokemonInfo.types[indexTypes];
-        typesHtml += `<li>${types.type.name}</li>`;
-    }
-    return typesHtml;
+function getTypesListTemplate(pokemonType) {
+    return `
+    <p>${pokemonType.name}</p>
+
+    `;
 }
+
+// function getTypesTemplate(pokemonInfo) {
+//     let typesHtml = "";
+//     for (let indexTypes = 0; indexTypes < pokemonInfo.types.length; indexTypes++) {
+//         const types = pokemonInfo.types[indexTypes];
+//         typesHtml += `<li>${types.type.name}</li>`;
+//     }
+//     return typesHtml;
+// }

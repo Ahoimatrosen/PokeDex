@@ -40,7 +40,7 @@ h1 {
 
 .card:hover {
     transition: 250ms ease-out;
-    transform: scale(1.07) rotate(2deg);
+    transform: scale(1.07) rotate(-2deg);
 }
 
 .card-body > header {
