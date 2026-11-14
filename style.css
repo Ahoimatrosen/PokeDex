@@ -106,3 +106,31 @@ h1 {
 .dark-type-background {
     background-color: var(--dark-type-background);
 }
+
+.row > * {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.card {
+    border: 1px solid rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+.card > header {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    padding: 10px;
+    width: 100%;
+}
+.card > footer {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.card-background {
+    background-color: rgb(37, 37, 37);
+    color: white;
+}
