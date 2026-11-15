@@ -1,5 +1,5 @@
+let offset = 0;
 async function init() {
-    let offset = 0;
     const pokemonList = await getPokemonList(offset);
     const pokemonInfoList = await getPokemonInfoList(pokemonList);
     const singlePokemonTypes = await getSinglePokemonTypes(pokemonInfoList);
@@ -26,6 +26,7 @@ async function getPokemonInfoList(pokemonList) {
     }
     return await Promise.all(pokemonPromises);
 }
+
 async function getSinglePokemonTypes(pokemonInfoList) {
     for (let indexPokemonInfoList = 0; indexPokemonInfoList < pokemonInfoList.length; indexPokemonInfoList++) {
         const singlePokemonTypePromises = [];
@@ -43,14 +44,14 @@ function renderPokemonInfo(pokemonInfoList) {
     for (let indexPokemonInfoList = 0; indexPokemonInfoList < pokemonInfoList.length; indexPokemonInfoList++) {
         const pokemonCardRef = document.getElementById("pokemon-card");
         const pokemonInfo = pokemonInfoList[indexPokemonInfoList];
-        pokemonCardRef.innerHTML += getPokemonCardTemplate(indexPokemonInfoList, pokemonInfo);
-        renderPokemonTypes(indexPokemonInfoList, pokemonInfo);
+        pokemonCardRef.innerHTML += getPokemonCardTemplate(pokemonInfo);
+        renderPokemonTypes(pokemonInfo);
     }
 }
 
-function renderPokemonTypes(indexPokemonInfoList, pokemonInfo) {
+function renderPokemonTypes(pokemonInfo) {
     for (let indexPokemonTypes = 0; indexPokemonTypes < pokemonInfo.singlePokemonType.length; indexPokemonTypes++) {
-        const pokemonTypesListRef = document.getElementById("types-list" + indexPokemonInfoList);
+        const pokemonTypesListRef = document.getElementById("types-list" + pokemonInfo.id);
         pokemonType = pokemonInfo.singlePokemonType[indexPokemonTypes];
         pokemonTypesListRef.innerHTML += getTypesListTemplate(pokemonType);
     }
@@ -59,8 +60,9 @@ function renderPokemonTypes(indexPokemonInfoList, pokemonInfo) {
 // lädt 20 mehr Pokemon
 async function loadMorePokemon() {
     offset = offset + 20;
-    POKE_API_POKEMON = "https://pokeapi.co/api/v2/pokemon?offset=" + offset;
     const nextPokemonList = await getPokemonList(offset);
     const nextPokemonInfoList = await getPokemonInfoList(nextPokemonList);
+    const nextsinglePokemonTypes = await getSinglePokemonTypes(nextPokemonInfoList);
+
     renderPokemonInfo(nextPokemonInfoList);
 }

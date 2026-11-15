@@ -1,6 +1,6 @@
-function getPokemonCardTemplate(indexPokemonInfoList, pokemonInfo) {
+function getPokemonCardTemplate(pokemonInfo) {
     return `
-    <div id="pokemon${indexPokemonInfoList}" class="card m-3 ${pokemonInfo.types[0].type.name}-type-background" style="width: 18rem">
+    <div id="pokemon${pokemonInfo.id}" class="card m-3 ${pokemonInfo.types[0].type.name}-type-background" style="width: 18rem">
     <header class="d-flex justify-content-between card-background">
         <h4 class="mt-2 mb-0">${pokemonInfo.name.toUpperCase()}</h4>
         <h4 class="mt-2 mb-0">#${pokemonInfo.id}</h4>
@@ -14,7 +14,7 @@ function getPokemonCardTemplate(indexPokemonInfoList, pokemonInfo) {
             />
             </div>
             <footer class="card-background">
-                <div class="d-flex justify-content-around" id="types-list${indexPokemonInfoList}"></div>
+                <div class="d-flex justify-content-around" id="types-list${pokemonInfo.id}"></div>
             </footer>
     </div>`;
 }
