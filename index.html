@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="./style.css" />
         <!-- JavaScript -->
+        <script defer src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script defer src="./script.js"></script>
         <script defer src="./scripts/templates.js"></script>
     </head>
@@ -20,5 +21,18 @@
         </header>
         <div class="container d-flex"><div id="pokemon-card" class="row row-cols-1 md:row-cols-2 g-4"></div></div>
         <button onclick="loadMorePokemon()" type="button" class="btn btn-success btn-lg">More Pokemon</button>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <div class="d-flex justify-content-around w-100">
+                    <h5 id="offcanvas-pokemon-name" class="offcanvas-title" id="offcanvasRightLabel">Pokemon</h5>
+                    <h5 class="offcanvas-title">id</h5>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <img src="./img/pokeball.svg" alt="mewtu" />
+            </div>
+        </div>
     </body>
 </html>

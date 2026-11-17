@@ -66,3 +66,7 @@ async function loadMorePokemon() {
 
     renderPokemonInfo(nextPokemonInfoList);
 }
+
+function fillPokemonInfoOffcanvas() {
+    offcanvasPokemonNameRef = document.getElementById("offcanvas-pokemon-name");
+}
