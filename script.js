@@ -1,13 +1,18 @@
 let offset = 0;
+let allPokemon = [];
+
 async function init() {
     const pokemonList = await getPokemonList(offset);
     const pokemonInfoList = await getPokemonInfoList(pokemonList);
     const singlePokemonTypes = await getSinglePokemonTypes(pokemonInfoList);
+
+    savePokemonInfo(pokemonInfoList);
     renderPokemonInfo(pokemonInfoList);
 
     console.log(pokemonList);
     console.log(pokemonInfoList);
     console.log(singlePokemonTypes);
+    console.log(allPokemon);
 }
 
 // holt die Namen und URLs der Pokemon
@@ -39,6 +44,17 @@ async function getSinglePokemonTypes(pokemonInfoList) {
     }
 }
 
+// lädt 20 mehr Pokemon
+async function loadMorePokemon() {
+    offset = offset + 20;
+    const nextPokemonList = await getPokemonList(offset);
+    const nextPokemonInfoList = await getPokemonInfoList(nextPokemonList);
+    const nextsinglePokemonTypes = await getSinglePokemonTypes(nextPokemonInfoList);
+    savePokemonInfo(nextPokemonInfoList);
+
+    renderPokemonInfo(nextPokemonInfoList);
+}
+
 // bildet Pokemonkarten ab
 function renderPokemonInfo(pokemonInfoList) {
     for (let indexPokemonInfoList = 0; indexPokemonInfoList < pokemonInfoList.length; indexPokemonInfoList++) {
@@ -57,16 +73,23 @@ function renderPokemonTypes(pokemonInfo) {
     }
 }
 
-// lädt 20 mehr Pokemon
-async function loadMorePokemon() {
-    offset = offset + 20;
-    const nextPokemonList = await getPokemonList(offset);
-    const nextPokemonInfoList = await getPokemonInfoList(nextPokemonList);
-    const nextsinglePokemonTypes = await getSinglePokemonTypes(nextPokemonInfoList);
-
-    renderPokemonInfo(nextPokemonInfoList);
+function fillPokemonDetails(pokemonId) {
+    const currentPokemon = allPokemon.find((pokemon) => pokemon.id === pokemonId);
+    document.getElementById("offcanvas-pokemon-name").innerHTML = currentPokemon.name.toUpperCase();
+    document.getElementById("offcanvas-pokemon-id").innerHTML = "#" + currentPokemon.id;
+    document.getElementById("offcanvas-pokemon-img").setAttribute("src", currentPokemon.sprites.other["official-artwork"].front_default);
+    document.getElementById("offcanvas-header").setAttribute("class", currentPokemon.types[0].type.name + "-type-background");
+    document.getElementById("base-stats-tab-pane").innerHTML = "";
+    for (let indexBaseStats = 0; indexBaseStats < currentPokemon.stats.length; indexBaseStats++) {
+        const baseStat = currentPokemon.stats[indexBaseStats];
+        document.getElementById("base-stats-tab-pane").innerHTML += getBaseStatTableTemplate(baseStat);
+    }
 }
 
-function fillPokemonInfoOffcanvas() {
-    offcanvasPokemonNameRef = document.getElementById("offcanvas-pokemon-name");
+function savePokemonInfo(infoList) {
+    for (let indexAllPokemon = 0; indexAllPokemon < infoList.length; indexAllPokemon++) {
+        const info = infoList[indexAllPokemon];
+
+        allPokemon.push(info);
+    }
 }

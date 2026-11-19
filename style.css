@@ -134,3 +134,16 @@ h1 {
     background-color: rgb(37, 37, 37);
     color: white;
 }
+
+.offcanvas {
+    --bs-offcanvas-width: 500px;
+}
+
+.offcanvas-body > img {
+    width: 100%;
+    height: 50%;
+}
+
+.progress {
+    margin: 10px;
+}
