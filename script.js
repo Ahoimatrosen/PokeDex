@@ -79,11 +79,15 @@ function fillPokemonDetails(pokemonId) {
     document.getElementById("offcanvas-pokemon-id").innerHTML = "#" + currentPokemon.id;
     document.getElementById("offcanvas-pokemon-img").setAttribute("src", currentPokemon.sprites.other["official-artwork"].front_default);
     document.getElementById("offcanvas-header").setAttribute("class", currentPokemon.types[0].type.name + "-type-background");
-    document.getElementById("base-stats-tab-pane").innerHTML = "";
+    document.getElementById("base-stats-table").innerHTML = "";
     for (let indexBaseStats = 0; indexBaseStats < currentPokemon.stats.length; indexBaseStats++) {
         const baseStat = currentPokemon.stats[indexBaseStats];
-        document.getElementById("base-stats-tab-pane").innerHTML += getBaseStatTableTemplate(baseStat);
+        document.getElementById("base-stats-table").innerHTML += getBaseStatTableTemplate(baseStat);
     }
+    document.getElementById("general-table").innerHTML = "";
+    document.getElementById("general-table").innerHTML = getGeneralTableTemplate(currentPokemon);
+    renderPokemonTypesInDetails(currentPokemon);
+    renderPokemonAbilitiesInDetails(currentPokemon);
 }
 
 function savePokemonInfo(infoList) {
@@ -91,5 +95,21 @@ function savePokemonInfo(infoList) {
         const info = infoList[indexAllPokemon];
 
         allPokemon.push(info);
+    }
+}
+
+function renderPokemonTypesInDetails(currentPokemon) {
+    document.getElementById("details-types").innerHTML = "";
+    for (let indexPokemonTypesInDetails = 0; indexPokemonTypesInDetails < currentPokemon.singlePokemonType.length; indexPokemonTypesInDetails++) {
+        const pokemonTypeInDetails = currentPokemon.singlePokemonType[indexPokemonTypesInDetails];
+        document.getElementById("details-types").innerHTML += getPokemonTypesInDetailsTemplate(pokemonTypeInDetails);
+    }
+}
+
+function renderPokemonAbilitiesInDetails(currentPokemon) {
+    document.getElementById("details-abilities").innerHTML = "";
+    for (let indexPokemonAbilitiesInDetails = 0; indexPokemonAbilitiesInDetails < currentPokemon.abilities.length; indexPokemonAbilitiesInDetails++) {
+        const ability = currentPokemon.abilities[indexPokemonAbilitiesInDetails];
+        document.getElementById("details-abilities").innerHTML += getPokemonAbilitiesInDetailsTemplate(ability);
     }
 }

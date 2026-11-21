@@ -16,13 +16,20 @@
     </head>
 
     <body onload="init()">
+        <!-- #region header -->
         <header class="d-flex justify-content-center">
             <h1 class="">PokeDex</h1>
         </header>
+        <!-- #endregion -->
+        <!-- #region pokemon-cards -->
         <div class="container d-flex"><div id="pokemon-card" class="row row-cols-1 md:row-cols-2 g-4"></div></div>
+        <!-- #endregion -->
+        <!-- #region loading button -->
         <button onclick="loadMorePokemon()" type="button" class="btn btn-success btn-lg">More Pokemon</button>
-
+        <!-- #endregion -->
+        <!-- #region offcanvas pokemon-details -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <!-- #region offcanvas-header -->
             <div id="offcanvas-header" class="offcanvas-header">
                 <div class="d-flex flex-column justify-content-center w-100">
                     <div>
@@ -37,34 +44,37 @@
                     </div>
                 </div>
             </div>
-            <div id="offcanvas-body" class="offcanvas-body card-background">
+            <!-- #endregion -->
+            <!-- #region offcanvas-body -->
+            <div id="offcanvas-body" class="offcanvas-body card-background d-flex flex-column align-items-center">
+                <!-- #region offcanvas-body-tabs -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button
                             class="nav-link active"
+                            id="general-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#general-tab-pane"
+                            type="button"
+                            role="tab"
+                            aria-controls="general-tab-pane"
+                            aria-selected="true"
+                        >
+                            General
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                            class="nav-link"
                             id="base-stats-tab"
                             data-bs-toggle="tab"
                             data-bs-target="#base-stats-tab-pane"
                             type="button"
                             role="tab"
                             aria-controls="base-stats-tab-pane"
-                            aria-selected="true"
-                        >
-                            Base-Stats
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button
-                            class="nav-link"
-                            id="profile-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#profile-tab-pane"
-                            type="button"
-                            role="tab"
-                            aria-controls="profile-tab-pane"
                             aria-selected="false"
                         >
-                            Profile
+                            Base-Stats
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -82,18 +92,28 @@
                         </button>
                     </li>
                 </ul>
+                <!-- #endregion -->
+                <!-- #region offcanvas-body-tabs-content -->
                 <div class="tab-content" id="myTabContent">
-                    <div
-                        class="tab-pane fade show active"
-                        id="base-stats-tab-pane"
-                        role="tabpanel"
-                        aria-labelledby="base-stats-tab"
-                        tabindex="0"
-                    ></div>
-                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+                    <!-- #region offcanvas-body-tabs-content-general-table  -->
+                    <div class="tab-pane fade show active" id="general-tab-pane" role="tabpanel" aria-labelledby="general-tab" tabindex="0">
+                        <table class="general-table" id="general-table"></table>
+                    </div>
+                    <!-- #endregion -->
+                    <!-- #region offcanvas-body-tabs-content-base-stats-table  -->
+                    <div class="tab-pane fade" id="base-stats-tab-pane" role="tabpanel" aria-labelledby="base-stats-tab" tabindex="0">
+                        <table id="base-stats-table"></table>
+                    </div>
+                    <!-- #endregion -->
+
+                    <!-- offcanvas-body-tabs-content-evolution  -->
                     <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
+                    <!-- #endregion -->
                 </div>
+                <!-- #endregion -->
             </div>
+            <!-- #endregion -->
         </div>
+        <!-- #endregion -->
     </body>
 </html>
