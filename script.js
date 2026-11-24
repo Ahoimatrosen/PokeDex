@@ -32,6 +32,7 @@ async function getPokemonInfoList(pokemonList) {
     return await Promise.all(pokemonPromises);
 }
 
+// lädt die typen eines pokemons aus api
 async function getSinglePokemonTypes(pokemonInfoList) {
     for (let indexPokemonInfoList = 0; indexPokemonInfoList < pokemonInfoList.length; indexPokemonInfoList++) {
         const singlePokemonTypePromises = [];
@@ -65,6 +66,7 @@ function renderPokemonInfo(pokemonInfoList) {
     }
 }
 
+//bildet typen eines pokemon ab
 function renderPokemonTypes(pokemonInfo) {
     for (let indexPokemonTypes = 0; indexPokemonTypes < pokemonInfo.singlePokemonType.length; indexPokemonTypes++) {
         const pokemonTypesListRef = document.getElementById("types-list" + pokemonInfo.id);
@@ -73,6 +75,7 @@ function renderPokemonTypes(pokemonInfo) {
     }
 }
 
+//füllt die detail--karte mit informationen
 function fillPokemonDetails(pokemonId) {
     const currentPokemon = allPokemon.find((pokemon) => pokemon.id === pokemonId);
     document.getElementById("offcanvas-pokemon-name").innerHTML = currentPokemon.name.toUpperCase();
@@ -89,7 +92,7 @@ function fillPokemonDetails(pokemonId) {
     renderPokemonTypesInDetails(currentPokemon);
     renderPokemonAbilitiesInDetails(currentPokemon);
 }
-
+// speichert informationen eines pokemon in einem globalen array
 function savePokemonInfo(infoList) {
     for (let indexAllPokemon = 0; indexAllPokemon < infoList.length; indexAllPokemon++) {
         const info = infoList[indexAllPokemon];
@@ -98,6 +101,7 @@ function savePokemonInfo(infoList) {
     }
 }
 
+//bildet pokemontypen in der detail-karte ab
 function renderPokemonTypesInDetails(currentPokemon) {
     document.getElementById("details-types").innerHTML = "";
     for (let indexPokemonTypesInDetails = 0; indexPokemonTypesInDetails < currentPokemon.singlePokemonType.length; indexPokemonTypesInDetails++) {
@@ -106,6 +110,7 @@ function renderPokemonTypesInDetails(currentPokemon) {
     }
 }
 
+//bildet pokemon-fähigkeiten in der detail-karte ab
 function renderPokemonAbilitiesInDetails(currentPokemon) {
     document.getElementById("details-abilities").innerHTML = "";
     for (let indexPokemonAbilitiesInDetails = 0; indexPokemonAbilitiesInDetails < currentPokemon.abilities.length; indexPokemonAbilitiesInDetails++) {

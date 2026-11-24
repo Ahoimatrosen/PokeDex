@@ -1,3 +1,4 @@
+//template für die pokemon-karten
 function getPokemonCardTemplate(pokemonInfo) {
     return `
         <div onclick="fillPokemonDetails(${pokemonInfo.id})"
@@ -21,12 +22,14 @@ function getPokemonCardTemplate(pokemonInfo) {
     `;
 }
 
+//template für die liste mit pokemontypen
 function getTypesListTemplate(pokemonType) {
     return `
         <img class="rounded-circle" src="${pokemonType.sprites["generation-ix"].champions["symbol_icon"]}" alt="pokemon-type-symbol">
     `;
 }
 
+//template für die base-stats
 function getBaseStatTableTemplate(baseStat) {
     return `
     
@@ -42,6 +45,7 @@ function getBaseStatTableTemplate(baseStat) {
     `;
 }
 
+//template für die tabelle mit generellen informationen zu einem pokemon
 function getGeneralTableTemplate(currentPokemon) {
     return `
     
@@ -70,6 +74,7 @@ function getGeneralTableTemplate(currentPokemon) {
     `;
 }
 
+//template für pokemontypen in der detail-karte
 function getPokemonTypesInDetailsTemplate(pokemonTypeInDetails) {
     return `
     <img src="${pokemonTypeInDetails.sprites["generation-viii"]["brilliant-diamond-shining-pearl"].name_icon}" class="p-1 detail-types-img" alt="type-img">
@@ -77,6 +82,7 @@ function getPokemonTypesInDetailsTemplate(pokemonTypeInDetails) {
     `;
 }
 
+//template für die pokemon-fähigkeiten in der detail-karte
 function getPokemonAbilitiesInDetailsTemplate(ability) {
     return `
 
